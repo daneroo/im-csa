@@ -32,6 +32,7 @@
     function fetchPortfolios(){
         liveClicks();
         $.getJSON("portfolios.json",function(portfolios) {
+            $('#stamp').text(portfolios.stamp);
             render(portfolios['Félix'],'#felix');
             render(portfolios['Laurence'],'#laurence');
             $.mobile.initializePage();
@@ -46,14 +47,14 @@
         var ul= $(pageid+' div[data-role=content] ul')
         portfolio.matieres.forEach(function(matiere/*,i,list*/){
             var lid0=listId++;
-            ul.append($('<li data-parent="'+lid0+'" data-role="list-divider">'+matiere.name+' <span class="ui-li-count">'+rez(matiere)+'</span></li>'));
+            ul.append($('<li class="ell" data-parent="'+lid0+'" data-role="list-divider">'+matiere.name+' <span class="ui-li-count">'+rez(matiere)+'</span></li>'));
             if (matiere.competences){
                 matiere.competences.forEach(function(competence/*,i,list*/){
                     var lid1=listId++;
-                    ul.append($('<li data-child="'+lid0+'" data-parent="'+lid1+'" data-theme="b">'+competence.name+' <span class="ui-li-count">'+rez(competence)+'</span></li>'));
+                    ul.append($('<li class="ell" data-child="'+lid0+'" data-parent="'+lid1+'" data-theme="b">'+competence.name+' <span class="ui-li-count">'+rez(competence)+'</span></li>'));
                     if (competence.travaux){
                         competence.travaux.forEach(function(travail/*,i,list*/){
-                            ul.append($('<li data-child="'+lid1+'">'+travail.name+' <span class="res-comp">'+rez(travail)+'</span></li>').hide());
+                            ul.append($('<li class="ell" data-child="'+lid1+'">'+travail.name+' <span class="res-comp">'+rez(travail)+'</span></li>').hide());
                         });
                     }
                 });
@@ -89,7 +90,7 @@
     </script>
 </head>
 <body>
-    <div data-url="home" id="home" data-role="page" data-theme="b">
+    <div style="background-color: #456F9A" data-url="home" id="home" data-role="page" data-theme="b">
         <div data-position="inline" data-role="header" data-theme="b">
             <h1>Saint-Alex</h1>
             <a data-icon="arrow-r" data-iconpos="right" class="ui-btn-right" data-rel="dialog" href="#contact">Contact</a>
@@ -104,12 +105,18 @@
                     <a href="#laurence">Laurence</a>
                 </li>
             </ul>
-            <a data-role="button" href="http://pluri.i-alex.qc.ca/pluriportail">Portail</a> 
+            <a data-role="button" href="http://pluri.i-alex.qc.ca/pluriportail">Portail</a>
+        </div>
+        <div data-position="inline" data-role="footer" data-theme="b">
+            <div style="text-align:center; color:#777; text-shadow:none">
+                Updated at <span id="stamp">1966-06-16T00:00:00Z</span></br>
+                &copy; 2011 Daniel Lauzon
+            </div>
         </div>
     </div>
     <div data-role="page" id="contact">
         <div data-role="header" data-theme="d" data-position="inline">
-        	<h1>Coordonnées</h1>
+        	<h1>Contact</h1>
         </div>
         <div data-role="content" data-theme="c">
             <p>2425, rue St-Louis<br>
@@ -123,13 +130,13 @@
             <br></p>
 
         	<a href="tel:+1%20(819)%20561-3812" data-role="button" data-rel="back" data-theme="b">+1 (819) 561-3812</a>       
-        	<a href="http://maps.google.ca/maps?q=coll%C3%A8ge+saint-alexandre&gl=ca&ie=UTF8&hl=fr&view=map&cid=6120649711076077877&hq=coll%C3%A8ge+saint-alexandre&hnear=&ll=45.489261,-75.747128&spn=0.023707,0.034161&z=13&iwloc=A&source=embed" data-role="button" data-rel="back" data-theme="c">Carte</a>    
+        	<a href="http://maps.google.ca/maps?q=coll%C3%A8ge+saint-alexandre&gl=ca&ie=UTF8&hl=fr&view=map&cid=6120649711076077877&hq=coll%C3%A8ge+saint-alexandre&hnear=&ll=45.489261,-75.747128&spn=0.023707,0.034161&z=13&iwloc=A&source=embed" data-role="button" data-theme="c">Carte</a>    
         </div>
     </div>
     <div data-url="felix" id="felix" data-role="page" not-data-theme="b">
         <div data-position="inline" data-role="header" not-data-theme="b">
             <h1>F&eacute;lix</h1>
-            <a data-icon="plus" data-iconpos="right" class="ui-btn-right showhide" href="#">Show/Hide</a>
+            <a data-icon="plus" data-iconpos="right" class="ui-btn-right showhide" href="#">Tous</a>
         </div>
         <div data-role="content">
             <ul data-role="listview" data-inset="false" data-theme="d" not-data-divider-theme="b">
@@ -139,7 +146,7 @@
     <div data-url="laurence" id="laurence" data-role="page" not-data-theme="b">
         <div data-position="inline" data-role="header" not-data-theme="b">
             <h1>Laurence</h1>
-            <a data-icon="plus" data-iconpos="right" class="ui-btn-right showhide" href="#">Show/Hide</a>
+            <a data-icon="plus" data-iconpos="right" class="ui-btn-right showhide" href="#">Tous</a>
         </div>
         <div data-role="content">
             <ul data-role="listview" data-inset="false" data-theme="d" not-data-divider-theme="b">

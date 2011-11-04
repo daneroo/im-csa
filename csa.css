@@ -3,12 +3,9 @@
   display: inline-block;
   float: right;
 }
-.li-res {
-  display: inline-block;
-  float: right;
-}
-.li-max {
-  display: inline-block;
-  float: right;
-}
 
+li.ell {
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
