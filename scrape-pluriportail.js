@@ -63,6 +63,7 @@ page.open(server+'Login.srf', function (status) {
     } else if (pi.basename==='Accueil.srf'){
       //console.log('reached acceuil with child: '+pi.enfant);
       if (done.count===2){
+        portfolios.stamp=iso8601(new Date());
         var f = fs.open('portfolios.json', "w");
         f.write(JSON.stringify(portfolios,null,2));
         f.close();
