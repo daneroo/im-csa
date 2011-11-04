@@ -12,7 +12,7 @@ The script invocations generates the `portfolios.json` file (git ignored).
 This produces the portfolios.json file. it is meant to be deployed in a static web-served folder.
 
     # crontab -e # on dirac
-    15 * * * * cd /Users/daniel/Sites/im-csa; phantomjs scrape-pluriportail.js P3101060 pluriportail-password >> scrape.log 2>&1
+    15 * * * * cd /Users/daniel/Sites/im-csa; /usr/local/bin/phantomjs scrape-pluriportail.js P3101060 pluriportail-password >> scrape.log 2>&1
     
 ## deploying on (no.de,cloudfoundy,goedel,dirac,etc)
 deploying publicly accessible (password protect data)
